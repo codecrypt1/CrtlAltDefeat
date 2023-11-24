@@ -93,7 +93,7 @@ def dist(a):
 
 ranks=[]
 
-def get_rank(coordinates,type_,size,state):
+def get_rank(coordinates,type_,size):
 	error=[]
 
 	if size=='large':
@@ -119,22 +119,22 @@ def get_rank(coordinates,type_,size,state):
 			error.append(c)
 			continue
 	  
-	#to get few compepitors to put in map we find competitors above average weight
-	avg_weight=sum([b['rating']*b['user_ratings_total']/dist(b['distance']) for b in competitors])/len(competitors)
+		#to get few compepitors to put in map we find competitors above average weight
+		avg_weight=sum([b['rating']*b['user_ratings_total']/dist(b['distance']) for b in competitors])/len(competitors)
 
-	for b in competitors:
-	  #print(b)
-	  weight = b['rating']*b['user_ratings_total']/b['distance']
-	  if weight>avg_weight*.9:
-	  	comp_details[b['name']]=[b['coordinates'],weight]
-	  compd+=b['distance']
-	  compr+=b['rating']*b['user_ratings_total']
-	  
-	  rank=rank+weight
-	ranks.append(rank)
-	compsd.append(compd)
-	compsr.append(compr)
-	#print(ranks)
+		for b in competitors:
+			#print(b)
+			weight = b['rating']*b['user_ratings_total']/b['distance']
+			if weight>avg_weight*.9:
+				comp_details[b['name']]=[b['coordinates'],weight]
+			compd+=b['distance']
+			compr+=b['rating']*b['user_ratings_total']
+		
+			rank=rank+weight
+		ranks.append(rank)
+		compsd.append(compd)
+		compsr.append(compr)
+		#print(ranks)
 
 
 	l = len(ranks)
@@ -151,9 +151,9 @@ def get_rank(coordinates,type_,size,state):
 		if compsd[i]<(compsd_avg*80/100):
 			compsd[i]='relatively more competitors closely'
 		elif compsd[i]==0:
-		  compsd[i]='make sure place got enough population density'
+			compsd[i]='make sure place got enough population density'
 		else:
-		  compsd[i]=''
+			compsd[i]=''
 	compsr_avg=sum(compsr)/len(compsr)
 	for i in range(len(compsr)):
 		if compsr[i]>(compsr_avg*120/100):
@@ -177,8 +177,8 @@ def get_rank(coordinates,type_,size,state):
 def history(uid,industry,des,res):
 	
 
-	cur.execute("INSERT INTO History (uid, des, sol, date, time) VALUES (%S,%s,%s,%s,%s)", (uid, industry+'-'+des, res,datetime.now().strftime('%Y-%m-%d'), datetime.now().strftime("%H:%M"));
-    conn.commit()
-		    
+	#cur.execute("INSERT INTO History (uid, des, sol, date, time) VALUES (%S,%s,%s,%s,%s)", (uid, industry+'-'+des, res,datetime.now().strftime('%Y-%m-%d'), datetime.now().strftime("%H:%M"));
+    #conn.commit()
+	return	    
 	
 
