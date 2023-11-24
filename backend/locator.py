@@ -1,4 +1,4 @@
-
+import google.generativeai as palm
 import googlemaps
 import os
 import psycopg2
@@ -92,27 +92,27 @@ def get_rank(coordinates,type_,size,state):
 	error=[]
 
 	if size=='large':
-	size=2000
+		size=2000
 	elif size=='medium':
-	size=1000
+		size=1000
 	elif size=='small':
-	size=500
+		size=500
 	ranks=[]
 	compsd=[]
 	compsr=[]
 	comp_details={}
 	for c in coordinates:
 
-	rank=0
-	weight=0
-	compd=0
-	compr=0
-	try:
-	  competitors=get_popular_places(c, place_type=type_, radius=size)
-	except Exception as e:
-	  print(e)
-	  error.append(c)
-	  continue
+		rank=0
+		weight=0
+		compd=0
+		compr=0
+		try:
+			competitors=get_popular_places(c, place_type=type_, radius=size)
+		except Exception as e:
+			print(e)
+			error.append(c)
+			continue
 	  
 	#to get few compepitors to put in map we find competitors above average weight
 	avg_weight=sum([b['rating']*b['user_ratings_total']/dist(b['distance']) for b in competitors])/len(competitors)
@@ -143,27 +143,27 @@ def get_rank(coordinates,type_,size,state):
 	print(compsr)
 	compsd_avg=sum(compsd)/len(compsd)
 	for i in range(len(compsd)):
-	if compsd[i]<(compsd_avg*80/100):
-	  compsd[i]='relatively more competitors closely'
-	elif compsd[i]==0:
-	  compsd[i]='make sure place got enough population density'
-	else:
-	  compsd[i]=''
+		if compsd[i]<(compsd_avg*80/100):
+			compsd[i]='relatively more competitors closely'
+		elif compsd[i]==0:
+		  compsd[i]='make sure place got enough population density'
+		else:
+		  compsd[i]=''
 	compsr_avg=sum(compsr)/len(compsr)
 	for i in range(len(compsr)):
-	if compsr[i]>(compsr_avg*120/100):
-	  compsr[i]='comparatively good competitors in this area'
-	elif compsr[i]==0:
-	  compsr[i]='make sure place got enough population density'
-	else:
-	  compsr[i]=''
+		if compsr[i]>(compsr_avg*120/100):
+			compsr[i]='comparatively good competitors in this area'
+		elif compsr[i]==0:
+			compsr[i]='make sure place got enough population density'
+		else:
+			compsr[i]=''
 	#print(compsd)
 	#print(compsr)
 	for i in error:
-	ind=call.index(c)
-	ranks.insert(ind,'error')
-	compsd.insert(ind,'error')
-	compsr.insert(ind,'error')
+		ind=call.index(c)
+		ranks.insert(ind,'error')
+		compsd.insert(ind,'error')
+		compsr.insert(ind,'error')
 
 	return {'rank':ranks,'observation1':compsd,'observation2':compsr,'competitors':comp_details}
 
