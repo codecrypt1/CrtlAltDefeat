@@ -1,4 +1,4 @@
-
+import google.generativeai as palm
 import googlemaps
 import os
 import psycopg2
@@ -97,22 +97,38 @@ def get_rank(coordinates,type_,size,state):
 		size=1000
 	elif size=='small':
 		size=500
+<<<<<<< HEAD
 		ranks=[]
 		compsd=[]
 		compsr=[]
 		comp_details={}
+=======
+	ranks=[]
+	compsd=[]
+	compsr=[]
+	comp_details={}
+>>>>>>> 29e6373bcfd345904db9862898818a96cd12cf43
 	for c in coordinates:
 
 		rank=0
 		weight=0
 		compd=0
 		compr=0
+<<<<<<< HEAD
 	try:
 	  competitors=get_popular_places(c, place_type=type_, radius=size)
 	except Exception as e:
 	  print(e)
 	  error.append(c)
 	  #continue
+=======
+		try:
+			competitors=get_popular_places(c, place_type=type_, radius=size)
+		except Exception as e:
+			print(e)
+			error.append(c)
+			continue
+>>>>>>> 29e6373bcfd345904db9862898818a96cd12cf43
 	  
 	#to get few compepitors to put in map we find competitors above average weight
 	avg_weight=sum([b['rating']*b['user_ratings_total']/dist(b['distance']) for b in competitors])/len(competitors)
@@ -146,10 +162,17 @@ def get_rank(coordinates,type_,size,state):
 		if compsd[i]<(compsd_avg*80/100):
 			compsd[i]='relatively more competitors closely'
 		elif compsd[i]==0:
+<<<<<<< HEAD
 			compsd[i]='make sure place got enough population density'
 		else:
 			compsd[i]=''
 			compsr_avg=sum(compsr)/len(compsr)
+=======
+		  compsd[i]='make sure place got enough population density'
+		else:
+		  compsd[i]=''
+	compsr_avg=sum(compsr)/len(compsr)
+>>>>>>> 29e6373bcfd345904db9862898818a96cd12cf43
 	for i in range(len(compsr)):
 		if compsr[i]>(compsr_avg*120/100):
 			compsr[i]='comparatively good competitors in this area'
@@ -157,8 +180,13 @@ def get_rank(coordinates,type_,size,state):
 			compsr[i]='make sure place got enough population density'
 		else:
 			compsr[i]=''
+<<<<<<< HEAD
 			#print(compsd)
 			#print(compsr)
+=======
+	#print(compsd)
+	#print(compsr)
+>>>>>>> 29e6373bcfd345904db9862898818a96cd12cf43
 	for i in error:
 		ind=call.index(c)
 		ranks.insert(ind,'error')
