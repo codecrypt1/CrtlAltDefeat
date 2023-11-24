@@ -30,21 +30,6 @@ def user_login():
 def user_register():
 	if request.method=='POST':
 		try:
-<<<<<<< HEAD
-			username = request.form['username']
-			password = request.form['password']
-			email=request.form['email']
-			cur.execute('SELECT * FROM Users;')
-			users = cur.fetchall()
-			for i in users:
-				if i[1]==email:
-					return {"message":"User exist already"}
-			cur.execute("INSERT INTO Users (email, name, password) VALUES (%s, %s, %s)", (email, username, password))
-			conn.commit()
-			return {"message":"User added succesfully"} 
-		except Exception as e:
-			return e.message
-=======
 		    username = request.form['username']
 		    password = request.form['password']
 		    email=request.form['email']
@@ -59,7 +44,6 @@ def user_register():
 		    return "User added succesfully" 
 		except Exception as e:
 		    return e.message
->>>>>>> 29e6373bcfd345904db9862898818a96cd12cf43
 			
 		
 
