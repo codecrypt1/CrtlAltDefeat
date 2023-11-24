@@ -1,6 +1,7 @@
 from flask import Flask, url_for,request,redirect,session,jsonify
 from flask import render_template
 from flask import current_app as app  
+from flask_cors import CORS, cross_origin
 app = Flask(__name__)
 CORS(app, support_credentials=True)
 
