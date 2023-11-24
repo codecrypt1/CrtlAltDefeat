@@ -1,6 +1,9 @@
 from flask import Flask, url_for,request,redirect,session,jsonify
 from flask import render_template
-from flask import current_app as app
+from flask import current_app as app  
+app = Flask(__name__)
+CORS(app, support_credentials=True)
+
 
 @app.route("/")
 def main():
@@ -41,5 +44,8 @@ def user_register():
             return redirect(url_for('user_login'))
    return render_template('user_register.html',msg='')
 
-  
-  	
+    
+if __name__ == '__main__':
+    
+    app.run(debug=True)
+	
