@@ -189,7 +189,13 @@
                 lat: clickedLat,
                 lng: clickedLng,
             };
-            selectedLocations.push(locationDetails);
+            var isLocationAlreadySelected = selectedLocations.some(function (location) {
+    return location.lat === locationDetails.lat && location.lng === locationDetails.lng;
+});
+
+if (!isLocationAlreadySelected) {
+    selectedLocations.push(locationDetails);
+}
 
                 updateLocationsList();
 
