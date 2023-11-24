@@ -10,7 +10,6 @@
     <script  src="{{ url_for('static', filename='js/modernizr.js')}}" data-turbolinks-track="reload"></script>
     <script  src="{{ url_for('static', filename='js/pace.min.js')}}" data-turbolinks-track="reload"></script>
 
-    <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin=""></script>
@@ -227,8 +226,6 @@ if (!isLocationAlreadySelected) {
             sendDataToFlask()
             but1 = document.getElementById("submit"); 
             but2 = document.getElementById("newLocationButton");
-            // but1.disabled = true;
-            // but2.disabled = true; 
             but1.style.color = '#474747';
             but2.style.color = '#474747';
             but1.style.backgroundColor = '#c4c4c4';
@@ -247,7 +244,6 @@ if (!isLocationAlreadySelected) {
 
         }
            
-        // Function to add new ranked marker
         function addresultmarker(response) {
             finallocations = response['locations'];
             rank = response['rank'];

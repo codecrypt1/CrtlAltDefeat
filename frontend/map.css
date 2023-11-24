@@ -25,12 +25,12 @@ header {
 }
 
 .left_area span {
-	color: #19b3d3;
+	color: #d500f9;
 }
 
 .logout_btn {
 	padding: 5px;
-	background: #19b3d3;
+	background: #d500f9;
 	text-decoration: none;
 	float: right;
 	margin-top: -30px;
