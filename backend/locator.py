@@ -1,6 +1,7 @@
 import google.generativeai as palm
 import googlemaps
 import os
+from datetime import datetime
 import psycopg2
 from dotenv import load_dotenv
 
@@ -69,7 +70,7 @@ def get_popular_places(cords, place_type, place_name='', radius=1500, rankby='pr
     
     
 # to get the validator data from PALM LLM
-def validator(type_, description):
+def validator(uid,type_, description):
 	model_id="models/text-bison-001"
 	prompt='''I am trying to start a Bicycle selling business in India. {{description}}. I want to know the market value and amount of customers of my business. what are some of my strong competitors. what is the per customer value? What are the potential risks and challenges my business may face? When can I expect to be profitable? what are some suggestions for me, give me an update about the current market? keep the answer small and don't repeat this questions, don't provide any links. answer in two paragraph.'''
 
@@ -82,6 +83,7 @@ def validator(type_, description):
 	result=completion.result
 	result=result.replace('**','')
 	result=result.replace('*','')
+	history(uid,type_,description,result)
 	return result
 	
 def dist(a):
@@ -170,4 +172,13 @@ def get_rank(coordinates,type_,size,state):
 
 	return {'rank':ranks,'observation1':compsd,'observation2':compsr,'competitors':comp_details}
 
+
+# to store the user interaction
+def history(uid,industry,des,res):
+	
+
+	cur.execute("INSERT INTO History (uid, des, sol, date, time) VALUES (%S,%s,%s,%s,%s)", (uid, industry+'-'+des, res,datetime.now().strftime('%Y-%m-%d'), datetime.now().strftime("%H:%M"));
+    conn.commit()
+		    
+	
 

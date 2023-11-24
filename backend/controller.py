@@ -74,8 +74,9 @@ def valid():
 		print('validator called')
 
 		type_ = request.form.get('type_')
+		uid = request.form.get('uid')
 		description = request.form.get('description')
-		valid = validator(type_,description)
+		valid = validator(uid,type_,description)
 		
 		return jsonify({'discription':valid})
 	return 'Provide query'
@@ -84,4 +85,7 @@ def valid():
 
 if __name__ == '__main__':
     app.run(debug=True)
+	
+	
+	
 	
