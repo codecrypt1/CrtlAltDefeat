@@ -26,8 +26,9 @@
     }
         #map {
             height: 100vh;
-            width: 100vw;
+            width: 70vwh;
             z-index: 0;
+            margin-top: 70px;
         }
 
     .container {
@@ -91,8 +92,6 @@
         opacity: 1;
         animation: fadeOut 10s ease-in-out; 
     }
-
-    /* CSS animation keyframes for fading out */
     @keyframes fadeOut {
         from {
             opacity: 1;
@@ -106,20 +105,17 @@
 <body>
 
     	<input type="checkbox" id="check" />
-		<!--header area start-->
 		<header>
 			<label for="check">
 				<i class="fas fa-bars" id="sidebar_btn"></i>
 			</label>
 			<div class="left_area">
-				<h3>Template<span>Again</span></h3>
+				<h3>Code<span>/crypt</span></h3>
 			</div>
 			<div class="right_area">
 				<a href="#" class="logout_btn">Logout</a>
 			</div>
 		</header>
-		<!--header area end-->
-		<!--mobile navigation bar start-->
 		<div class="mobile_nav">
 			<div class="mobile_nav_items">
 				<a href="./dashboard.html"><i class="fas fa-desktop"></i><span>Home</span></a>
@@ -127,20 +123,16 @@
 				<a href="#"><i class="fas fa-table"></i><span>Location finder</span></a>
 			</div>
 		</div>
-		<!--mobile navigation bar end-->
-		<!--sidebar start-->
 		<div class="sidebar">
 			<a href="./dashboard.html"><i class="fas fa-desktop"></i><span>Home</span></a>
 			<a href="#"><i class="fas fa-cogs"></i><span>Validation</span></a>
 			<a href="#"><i class="fas fa-table"></i><span>Location finder</span></a>
 		</div>
-		<!--sidebar end-->
 
     <div id="map">
 
     </div>  
     <div id="map" class="container content">
-      <!-- <button class="button" id="newLocationButton">New Location</button> -->
 
       <button id="submit" class="button" style="width:110px" onclick="onSubmitButtonClick()">submit</button>
       <button class="button" id="tryagainbutton" onclick="window.location.replace('http://127.0.0.1:5000/map')" style="width: 110px;">Reset</button>
@@ -149,19 +141,16 @@
             <p style="font-size: 20px;">Please go to your prefered city and mark the locations by clicking.Then click <b>submit</b> and wait.</p>
         </div>
       </div>
-      <!-- <button id="submit" class="button" onclick="onSubmitButtonClick()">submit</button> -->
     </div>
 
     <script>
-        // Block for the fading notification
         window.addEventListener('DOMContentLoaded', function() {
-        // Get the notification element
+       
         const notification = document.getElementById('notification');
 
-        // Hide the notification after a delay
         setTimeout(function() {
             notification.style.display = 'none';
-        }, 10000); // 5000ms = 5 seconds
+        }, 10000);
         });
 
 
@@ -170,28 +159,23 @@
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
-        // Array to store location details
         var selectedLocations = [];
         var details = {cname:localStorage.getItem('company_name'), ctype:localStorage.getItem('Company_Type'), cloc:localStorage.getItem('Company_location'), ctar:localStorage.getItem('Company_target')}
         
         console.log(details)
-        var markers = []; // Array to store marker references
+        var markers = []; 
 
-        // Function to handle the "New Location" button click
         function onNewLocationButtonClick() {
-            // Enable map click event to select a new location
             map.on('click', onMapClick);
         }
 
-        // Function to handle the map click event
         function onMapClick(e) {
             var clickedLat = e.latlng.lat;
             var clickedLng = e.latlng.lng;
             
-            // Create a marker at the clicked location
             var stepIcon = L.icon({
-                iconUrl: 'https://cdn-icons-png.flaticon.com/512/3082/3082383.png', // the background image you want
-                iconSize: [30, 30] // size of the icon
+                iconUrl: 'https://cdn-icons-png.flaticon.com/512/3082/3082383.png', 
+                iconSize: [30, 30] 
             });
 
             var marker = L.marker([clickedLat, clickedLng], { icon:stepIcon});
@@ -200,29 +184,22 @@
             
 
 
-            markers.push(marker); // Store the marker reference
-            
-            // Store the location details in the selectedLocations array
+            markers.push(marker);
             var locationDetails = {
                 lat: clickedLat,
                 lng: clickedLng,
-                    // Add any other relevant information about the location here
             };
             selectedLocations.push(locationDetails);
 
-                // Display the selected locations on the side of the map
                 updateLocationsList();
 
-                // Disable the map click event after a location is selected
                 map.off('click', onMapClick);
         }
 
-        // Function to update the list of selected locations on the side of the map
         function updateLocationsList() {
             var locationsListDiv = document.getElementById('locationsList');
             locationsListDiv.innerHTML = '';
 
-            // Loop through the selectedLocations array and display each location's details
             selectedLocations.forEach(function (location, index) {
                 var locationItem = document.createElement('div');
                 locationItem.innerHTML = `<b>Location ${index + 1}:</b><br>Latitude: ${location.lat}<br>Longitude: ${location.lng}
@@ -231,18 +208,15 @@
             });
         }
 
-        // Function to delete a location and its corresponding marker
         function deleteLocation(index) {
-            selectedLocations.splice(index, 1); // Remove location from the array
+            selectedLocations.splice(index, 1); 
             var marker = markers[index];
-            map.removeLayer(marker); // Remove the corresponding marker from the map
-            markers.splice(index, 1); // Remove the marker reference from the array
-            updateLocationsList(); // Update the displayed locations list
+            map.removeLayer(marker); 
+            markers.splice(index, 1); 
+            updateLocationsList(); 
         }
 
-        // Function to handle the "Submit" button click
         function onSubmitButtonClick() {
-            // Do something with the selectedLocations array (e.g., send it to the server)
             selectedLocations.push(details)
             sendDataToFlask()
             but1 = document.getElementById("submit"); 
@@ -257,7 +231,6 @@
             selectedLocations.pop()
             console.log(selectedLocations);
         }
-        // Function to delete all marker from markers array
         function deleteAllMarkers() {
             for (let i = 0; i < markers.length; i++) {
                 map.removeLayer(markers[i]);                
@@ -302,7 +275,6 @@
                 },
                 body: JSON.stringify({ locations: selectedLocations })
                 }).then(response => response.json())
-            //response = response.json()
             console.log(response)
             console.log('this is the return');
 
@@ -312,7 +284,6 @@
 
         }
 
-        // Attach event listeners to buttons
         var newLocationButton = document.getElementById('newLocationButton');
         document.addEventListener('click', onNewLocationButtonClick);
 
