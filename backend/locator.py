@@ -19,9 +19,6 @@ conn = psycopg2.connect(connection_string)
 cur = conn.cursor()
 
 
-
-#==========
-
 def get_popular_places(cords, place_type, place_name='', radius=1500, rankby='prominence'):
     """
     Function to get popular places with their details based on coordinates.
@@ -69,9 +66,9 @@ def get_popular_places(cords, place_type, place_name='', radius=1500, rankby='pr
     
     
 # to get the validator data from PALM LLM
-def validator(type_, description):
+def validator(type_):
 	model_id="models/text-bison-001"
-	prompt='''I am trying to start a Bicycle selling business in India. {{description}}. I want to know the market value and amount of customers of my business. what are some of my strong competitors. what is the per customer value? What are the potential risks and challenges my business may face? When can I expect to be profitable? what are some suggestions for me, give me an update about the current market? keep the answer small and don't repeat this questions, don't provide any links. answer in two paragraph.'''
+	prompt='''I am trying to start a Bicycle selling business in India. I want to know the market value and amount of customers of my business. what are some of my strong competitors. what is the per customer value? What are the potential risks and challenges my business may face? When can I expect to be profitable? keep the answer small and don't repeat this questions, don't provide any links. answer in two paragraph.'''
 
 	completion=palm.generate_text(
 		model=model_id,
