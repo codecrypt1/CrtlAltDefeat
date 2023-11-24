@@ -102,4 +102,63 @@ section .signin .content .form .inputBox {
     width: 100%;
 }
 
-section .signin .content .form .inputBox input
+
+.signin .content .form .inputBox input[type="text"],
+.signin .content .form .inputBox input[type="password"] {
+    padding: 25px 10px 7.5px;
+}
+
+.signin .content .form .links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.signin .content .form .links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.signin .content .form .links a:hover {
+    color: #d500f9;
+}
+
+.signin .content .form .links a:nth-child(2) {
+    font-weight: 600;
+}
+
+.signin .content .form .inputBox input[type="submit"] {
+    padding: 15px;
+    background: #d500f9;
+    color: #000;
+    font-weight: 600;
+    font-size: 1.2em;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.signin .content .form .inputBox input[type="submit"]:hover {
+    background: #9e00e6;
+}
+
+/* Responsive Styles */
+
+@media (max-width: 900px) {
+    .section span {
+        width: calc(10vw - 2px);
+        height: calc(10vw - 2px);
+    }
+}
+
+@media (max-width: 600px) {
+    .section span {
+        width: calc(20vw - 2px);
+        height: calc(20vw - 2px);
+    }
+
+    .signin {
+        width: 90%;
+    }
+}

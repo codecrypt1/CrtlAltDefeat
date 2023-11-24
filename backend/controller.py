@@ -28,22 +28,21 @@ def user_login():
 
 @app.route('/user_register', methods =['GET', 'POST'])
 def user_register():
-    if request.method=='POST':
+	if request.method=='POST':
 		try:
-		    username = request.form['username']
-		    password = request.form['password']
-		    email=request.form['email']
-		    
-		    cur.execute('SELECT * FROM Users;')
+			username = request.form['username']
+			password = request.form['password']
+			email=request.form['email']
+			cur.execute('SELECT * FROM Users;')
 			users = cur.fetchall()
-		    for i in users:
-		    	if i[1]==email:
-		    		return "User exist already"
-		    cur.execute("INSERT INTO Users (email, name, password) VALUES (%s, %s, %s)", (email, username, password))
-		    conn.commit()
-			return "User added succesfully" 
+			for i in users:
+				if i[1]==email:
+					return {"message":"User exist already"}
+			cur.execute("INSERT INTO Users (email, name, password) VALUES (%s, %s, %s)", (email, username, password))
+			conn.commit()
+			return {"message":"User added succesfully"} 
 		except Exception as e:
-	        return e.message
+			return e.message
 			
 		
 
