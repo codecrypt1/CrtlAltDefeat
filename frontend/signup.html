@@ -1,105 +1,135 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
 
-<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <title>Signup</title>
+    <link rel="stylesheet" href="./login.css">
+</head>
 
- <head> 
+<body>
+    <section class="smart-scroll">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-md navbar-dark">
+                <a class="navbar-brand heading-black" href="index.html"> Knight </a>
+                <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
+                    data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span data-feather="grid"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link page-scroll" href="#features">Features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link page-scroll" href="#faq">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link page-scroll" href="./login.html">
+                                <button class="btn btn-secondary d-inline-flex flex-row align-items-center"
+                                    onclick="signupClicked()">
+                                    Login
+                                    <em class="ml-2" data-feather="arrow-right"></em>
+                                </button>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </section>
+<section> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <section>
+        <div class="signin">
+            <div class="content">
+                <h2>Sign Up</h2>
+                <div class="form">
+                    <div class="inputBox">
+                        <input id="name" type="text" required>
+                        <i>Name</i>
+                    </div>
+                    <div class="inputBox">
+                        <input id="email" type="text" required>
+                        <i>Email</i>
+                    </div>
+                    <div class="inputBox">
+                        <input id="password" type="password" required>
+                        <i>Password</i>
+                    </div>
+                    <div class="inputBox">
+                        <input id="password2" type="password" required>
+                        <i>Confirm Password</i>
+                    </div>
+                    <div class="links">
+                        <a href="./login.html">Login</a>
+                    </div>
+                    <div class="inputBox">
+                        <input type="submit" value="Signup" onclick="signupClicked()">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <meta charset="UTF-8"> 
+    <script>
+        async function signupClicked() {
+            console.log("clicked duyoof");
 
-  <title>Signup</title> 
+            // Retrieve form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('password2').value;
 
-  <link rel="stylesheet" href="./login.css"> 
+            // Basic form validation
+            if (!name || !email || !password || !confirmPassword) {
+                alert('All fields are required');
+                return;
+            }
 
- </head> 
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
 
- <body> 
-<section class="smart-scroll ">
-			<div class="container-fluid">
-				<nav class="navbar navbar-expand-md navbar-dark">
-					<a class="navbar-brand heading-black" href="index.html"> Knight </a>
-					<button
-						class="navbar-toggler navbar-toggler-right border-0"
-						type="button"
-						data-toggle="collapse"
-						data-target="#navbarCollapse"
-						aria-controls="navbarCollapse"
-						aria-expanded="false"
-						aria-label="Toggle navigation"
-					>
-						<span data-feather="grid"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="navbarCollapse">
-						<ul class="navbar-nav ml-auto">
-							<li class="nav-item">
-								<a class="nav-link page-scroll" href="#features">Features</a>
-							</li>
+            // You can add more specific validation based on your requirements
 
-							<li class="nav-item">
-								<a class="nav-link page-scroll" href="#faq">FAQ</a>
-							</li>
+            // Prepare data for the API
+            const formData = {
+                name: name,
+                email: email,
+                password: password,
+                confirmPassword: confirmPassword
+            };
 
-							<li class="nav-item">
-								<a class="nav-link page-scroll" href="./login.html">
-									<button
-										class="btn btn-secondary d-inline-flex flex-row align-items-center"
-									>
-										Login
-										<em class="ml-2" data-feather="arrow-right"></em>
-									</button>
-								</a>
-							</li>
-						</ul>
-					</div>
-				</nav>
-			</div>
-		</section>
+            // Make API call
+            try {
+                const response = await fetch('/api/user_signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
 
-  <section> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+                const responseData = await response.json();
 
-   <div class="signin"> 
-
-    <div class="content"> 
-
-     <h2>Sign Up</h2> 
-
-     <div class="form"> 
-
-      <div class="inputBox"> 
-
-       <input id="username" type="text" required> <i>Username</i> 
-
-      </div> 
-
-      <div class="inputBox"> 
-
-       <input id="password" type="password" required> <i>Password</i> 
-
-      </div> 
-
-      <div class="inputBox"> 
-
-       <input id="password2" type="password" required> <i>Confirm Password</i> 
-
-      </div> 
-
-      <div  class="links"> <a href="./login.html">Login</a> 
-
-      </div> 
-
-      <div class="inputBox"> 
-
-       <input type="submit" value="Signup"> 
-
-      </div> 
-
-     </div> 
-
-    </div> 
-
-   </div> 
-
-  </section>
-
- </body>
+                // Check if the response is true
+                if (responseData.success) {
+                    // Redirect to the login page
+                    window.location.href = './login.html';
+                } else {
+                    // Handle error, show a message, etc.
+                    console.error('Signup failed:', responseData.message);
+                    alert('Signup failed: ' + responseData.message);
+                }
+            } catch (error) {
+                console.error('Error during signup:', error.message);
+                alert('Error during signup');
+            }
+        }
+    </script>
+</body>
 
 </html>
