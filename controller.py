@@ -2,7 +2,7 @@ from flask import Flask, url_for,request,redirect,session,jsonify
 from flask import render_template
 from flask import current_app as app  
 from flask_cors import CORS, cross_origin
-from locator import *
+from backend.locator import *
 
 app = Flask(__name__)
 CORS(app, support_credentials=True)
@@ -10,10 +10,13 @@ CORS(app, support_credentials=True)
 
 @app.route("/")
 def main():
-     return render_template('home.html')
+     return render_template('index.html')
      
-@app.route("/user_login", methods=["GET","POST"])
-def user_login():
+
+
+
+@app.route("/login", methods=["GET","POST"])
+def login():
     if request.method=='POST':
         user_email = request.form['Email']
         password = request.form['password']
@@ -23,11 +26,11 @@ def user_login():
             uid=all_users[0].user_id
             return redirect(url_for('user_dashboard',uid=uid))
         else:
-            return render_template('user_login.html',msg='Wrong credentials,try again')
-    return render_template('user_login.html',msg='')
+            return render_template('login.html',msg='Wrong credentials,try again')
+    return render_template('login.html',msg='')
 
-@app.route('/user_register', methods =['GET', 'POST'])
-def user_register():
+@app.route('/signup', methods =['GET', 'POST'])
+def signup():
 	if request.method=='POST':
 		try:
 		    username = request.form['username']
@@ -48,7 +51,7 @@ def user_register():
 		
 
 @app.route('/rank',methods=['POST','GET'])
-def main():
+def rank():
 	if request.method=='POST':
 		print('api called')
 
@@ -66,7 +69,7 @@ def main():
 	return 'Provide query'
 	
 @app.route('/validator',methods=['POST','GET'])
-def main():
+def validator():
 	if request.method=='POST':
 		print('validator called')
 
