@@ -12,8 +12,8 @@ CORS(app, support_credentials=True)
 def main():
      return render_template('index.html')
      
-@app.route("/user_login", methods=["GET","POST"])
-def user_login():
+@app.route("/login", methods=["GET","POST"])
+def login():
     if request.method=='POST':
         user_email = request.form['Email']
         password = request.form['password']
@@ -23,8 +23,8 @@ def user_login():
             uid=all_users[0].user_id
             return redirect(url_for('user_dashboard',uid=uid))
         else:
-            return render_template('user_login.html',msg='Wrong credentials,try again')
-    return render_template('user_login.html',msg='')
+            return render_template('login.html',msg='Wrong credentials,try again')
+    return render_template('login.html',msg='')
 
 @app.route('/user_register', methods =['GET', 'POST'])
 def user_register():
