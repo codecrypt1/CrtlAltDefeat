@@ -10,7 +10,7 @@ CORS(app, support_credentials=True)
 
 @app.route("/")
 def main():
-     return render_template('home.html')
+     return True
      
 @app.route("/user_login", methods=["GET","POST"])
 def user_login():
