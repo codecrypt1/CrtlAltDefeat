@@ -1,10 +1,11 @@
 from flask import Flask, url_for, request, redirect, session, jsonify
-from flask import render_template
+from flask import render_template, session
 from flask import current_app as app
 from flask_cors import CORS, cross_origin
 from backend.locator import *
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key'
 CORS(app, support_credentials=True)
 
 
@@ -38,10 +39,12 @@ def login():
         cur.execute('SELECT * FROM Users;')
         users = cur.fetchall()
         # print(users)
+        
         for i in users:
             if i[1] == email and i[3] == str(password):
                 print('found user')
-                return redirect(url_for('dashboard', uid=2))
+                session['uid']=i[0]
+                return redirect(url_for('dashboard'))
 
         return render_template('login.html', msg='Wrong credentials,try again')
     return render_template('login.html', msg='')
@@ -66,7 +69,7 @@ def signup():
                         (email, username, password))
             conn.commit()
             print('user added')
-            return redirect(url_for('dashboard'))
+            return redirect(url_for('login'))
         except Exception as e:
             print(e)
             
@@ -97,7 +100,7 @@ def valid():
         print('validator called')
 
         type_ = request.form.get('industry')
-        uid = request.form.get('uid')
+        uid = session.get('uid', 0)
         description = request.form.get('description')
         valid = validator(uid, type_, description)
 

@@ -146,7 +146,10 @@ def get_rank(coordinates,type_,size):
 	#print(ranks)
 	print(compsd)
 	print(compsr)
-	compsd_avg=sum(compsd)/len(compsd)
+	if len(compsd)!=0:
+		compsd_avg=sum(compsd)/len(compsd)
+	else:
+		compsd_avg=1
 	for i in range(len(compsd)):
 		if compsd[i]<(compsd_avg*80/100):
 			compsd[i]='relatively more competitors closely'
