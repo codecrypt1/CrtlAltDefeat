@@ -427,6 +427,8 @@
 							id="contact-submit"
 							data-submit="...Sending"
 							value="submit"
+				onclick="onSubmitButtonClick()"
+
 						>
 							
 					</input>
@@ -442,12 +444,10 @@
 			</div>
 		</div>
 		<script>
-			document
-				.getElementById("contact")
-				.addEventListener("submit", function (event) {
-					event.preventDefault();
 
-					var industryField = document.getElementsByName("industry")[0];
+const onSubmitButtonClick = async () => {
+
+	var industryField = document.getElementsByName("industry")[0];
 					var descriptionField = document.getElementsByName("description")[0];
 
 					var industry = industryField.value;
@@ -466,25 +466,44 @@
 						modal.style.display = "none";
 					};
 
+					
+
 					var formdata = new FormData();
-					formdata.append("type_", industry);
+					formdata.append("industry", industry);
+					
 					formdata.append("description", description);
+					
+					
 					var requestOptions = {
 						method: "POST",
-						headers: { "Content-Type": "application/json" },
 						body: formdata,
 						redirect: "follow",
 					};
 
-					// Fetch the API result
-					fetch("http://127.0.0.1:5000/validator", requestOptions)
-						.then((response) => response.text())
-						.then((result) => {
-							// Display the result in the modal
-							document.getElementById("apiResult").textContent = result;
-						})
-						.catch((error) => console.log("error", error));
-				});
+					const response = await fetch("http://127.0.0.1:5000/validator", requestOptions);
+
+
+					if (response.ok) {
+						let data = await response.json(); // Parse the response as JSON
+
+						console.log("Response:", data);
+						document.getElementById("apiResult").textContent = data.discription;
+
+					} else {
+						console.error("error:", response.statusText);
+					}
+}
+
+			// document
+			// 	.getElementById("contact")
+			// 	.addEventListener("submit", function async (event) {
+			// 		// event.preventDefault();
+
+				
+
+					
+			// 	});
+				
 		</script>
 	</body>
 </html>

@@ -95,9 +95,8 @@ def rank():
 def valid():
     if request.method == 'POST':
         print('validator called')
-
         type_ = request.form.get('industry')
-        uid = request.form.get('uid')
+        uid = 0
         description = request.form.get('description')
         valid = validator(uid, type_, description)
 
