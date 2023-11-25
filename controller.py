@@ -54,10 +54,10 @@ def signup():
             username = request.form['username']
             password = request.form['password']
             email = request.form['email']
-
+            print('inside signup',username)
             cur.execute('SELECT * FROM Users;')
             users = cur.fetchall()
-
+            print(users)
             for i in users:
                 if i[1] == email:
                     print('user exist already')
@@ -65,7 +65,8 @@ def signup():
             cur.execute("INSERT INTO Users (email, name, password) VALUES (%s, %s, %s)",
                         (email, username, password))
             conn.commit()
-            return redirect(url_for(dashboard))
+            print('user added')
+            return redirect(url_for('dashboard'))
         except Exception as e:
             print(e)
             
