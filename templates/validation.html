@@ -3,10 +3,11 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Dashboard</title>
-		<link rel="stylesheet" href="dashboard.css" />
+		<title>Validation</title>
+	</head>
+	<body>
 		<style>
-		
+			@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 			body {
 				margin: 0;
 				padding: 0;
@@ -20,7 +21,7 @@
 				padding: 20px;
 				width: calc(100% - 0%);
 				top: 0;
-				height: 50px;
+				height: 30px;
 			}
 
 			.left_area h3 {
@@ -67,6 +68,7 @@
 				transition: 0.5s;
 				transition-property: left;
 				overflow-y: auto;
+				font-family: "Roboto", sans-serif;
 			}
 
 			.profile_info {
@@ -167,12 +169,115 @@
 				display: none;
 			}
 
-			.content .card p {
-				background: #fff;
+			#viewBtn {
+				background-color: #4caf50;
+				color: white;
+				padding: 10px 24px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				margin: 4px 2px;
+				cursor: pointer;
+				border: none;
+				border-radius: 4px;
+			}
+
+			#mainContent.modal-open {
+				filter: blur(2px);
+			}
+			.modal {
+				display: none;
+				position: fixed;
+				z-index: 1;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				overflow: auto;
+				background-color: rgba(0, 0, 0, 0.4);
+			}
+
+			.modal-content {
+				background-color: #fefefe;
+				margin: 15% auto;
+				padding: 20px;
+				border: 1px solid #888;
+				width: 80%;
+			}
+
+			.close {
+				color: #aaa;
+				float: right;
+				font-size: 28px;
+				font-weight: bold;
+			}
+
+			.close:hover,
+			.close:focus {
+				color: black;
+				text-decoration: none;
+				cursor: pointer;
+			}
+
+			#contact {
+				width: 80%;
+				margin: auto;
+				background: #f9f9f9;
+				padding: 30px;
+				border: 1px solid #c1c1c1;
+				border-radius: 8px;
+				font-family: "Roboto", sans-serif;
+			}
+
+			#contact h3 {
+				margin-bottom: 20px;
+				font-weight: 300;
+				font-size: 24px;
+			}
+
+			#contact fieldset {
+				border: none;
+				margin-bottom: 20px;
+			}
+
+			#contact input {
+				width: 50%; /* Adjust as needed */
+				padding: 10px;
+				border: 1px solid #c1c1c1;
+				border-radius: 4px;
+				box-sizing: border-box;
+				margin-bottom: 20px;
+				margin-left: auto;
+				margin-right: auto;
+				display: block;
+				font-family: "Roboto", sans-serif;
+			}
+			#contact textarea {
+				width: 50%; /* Same as the input width */
+				height: 100px; /* Adjust as needed */
+				padding: 10px;
+				border: 1px solid #c1c1c1;
+				border-radius: 4px;
+				box-sizing: border-box;
+				margin-bottom: 20px;
+				margin-left: auto;
+				margin-right: auto;
+				display: block;
+				font-family: "Roboto", sans-serif;
+			}
+
+			#contact input[type="submit"] {
+				width: 30%; /* Adjust as needed */
+				background-color: #4caf50;
+				color: white;
 				padding: 15px;
-				margin-bottom: 10px;
-				font-size: 14px;
-				opacity: 0.8;
+				border: none;
+				border-radius: 4px;
+				cursor: pointer;
+				font-size: 20px;
+				display: block;
+				margin: 0 auto;
 			}
 
 			/* Responsive CSS */
@@ -259,176 +364,43 @@
 					display: block;
 				}
 			}
-
-			* {
-				margin: 0;
-				padding: 0;
-				box-sizing: border-box;
-				-webkit-box-sizing: border-box;
-				-moz-box-sizing: border-box;
-				-webkit-font-smoothing: antialiased;
-				-moz-font-smoothing: antialiased;
-				-o-font-smoothing: antialiased;
-				text-rendering: optimizeLegibility;
-			}
-
-			body {
-				font-family: "Open Sans", Helvetica, Arial, sans-serif;
-				font-weight: 300;
-				font-size: 12px;
-				line-height: 30px;
-				color: #777;
-				background: #0cf;
-			}
-
-			.container {
-				max-width: 400px;
-				width: 100%;
-				margin: 0 auto;
-				position: relative;
-			}
-
-			#contact input[type="text"],
-			#contact input[type="email"],
-			#contact input[type="tel"],
-			#contact input[type="url"],
-			#contact textarea,
-			#contact button[type="submit"] {
-				font: 400 12px/16px "Open Sans", Helvetica, Arial, sans-serif;
-			}
-
-			#contact {
-				background: #f9f9f9;
-				padding: 25px;
-				margin: 50px 0;
-			}
-
-			#contact h3 {
-				color: #f96;
-				display: block;
-				font-size: 30px;
-				font-weight: 400;
-			}
-
-			#contact h4 {
-				margin: 5px 0 15px;
-				display: block;
-				font-size: 13px;
-			}
-
-			fieldset {
-				border: medium none !important;
-				margin: 0 0 10px;
-				min-width: 100%;
-				padding: 0;
-				width: 100%;
-			}
-
-			#contact input[type="text"],
-			#contact input[type="email"],
-			#contact input[type="tel"],
-			#contact input[type="url"],
-			#contact textarea {
-				width: 100%;
-				border: 1px solid #ccc;
-				background: #fff;
-				margin: 0 0 5px;
-				padding: 10px;
-			}
-
-			#contact input[type="text"]:hover,
-			#contact input[type="email"]:hover,
-			#contact input[type="tel"]:hover,
-			#contact input[type="url"]:hover,
-			#contact textarea:hover {
-				-webkit-transition: border-color 0.3s ease-in-out;
-				-moz-transition: border-color 0.3s ease-in-out;
-				transition: border-color 0.3s ease-in-out;
-				border: 1px solid #aaa;
-			}
-
-			#contact textarea {
-				height: 100px;
-				max-width: 100%;
-				resize: none;
-			}
-
-			#contact button[type="submit"] {
-				cursor: pointer;
-				width: 100%;
-				border: none;
-				background: #0cf;
-				color: #fff;
-				margin: 0 0 5px;
-				padding: 10px;
-				font-size: 15px;
-			}
-
-			#contact button[type="submit"]:hover {
-				background: #09c;
-				-webkit-transition: background 0.3s ease-in-out;
-				-moz-transition: background 0.3s ease-in-out;
-				transition: background-color 0.3s ease-in-out;
-			}
-
-			#contact button[type="submit"]:active {
-				box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
-			}
-
-			#contact input:focus,
-			#contact textarea:focus {
-				outline: 0;
-				border: 1px solid #999;
-			}
-			::-webkit-input-placeholder {
-				color: #888;
-			}
-			:-moz-placeholder {
-				color: #888;
-			}
-			::-moz-placeholder {
-				color: #888;
-			}
-			:-ms-input-placeholder {
-				color: #888;
-			}
 		</style>
-	</head>
-
-	<body>
-		<input type="checkbox" id="check" />
-		<!-- Header area start -->
 		<header>
 			<label for="check">
 				<i class="fas fa-bars" id="sidebar_btn"></i>
 			</label>
 			<div class="left_area">
-				<h3>Template<span>Again</span></h3>
+				<h3>Code<span>crypt</span></h3>
 			</div>
 			<div class="right_area">
 				<a href="#" class="logout_btn">Logout</a>
 			</div>
 		</header>
-		<div class="mobile_nav">
-			<div class="mobile_nav_items">
-				<a href="./dashboard.html"
-					><i class="fas fa-desktop"></i><span>Home</span></a
-				>
-				<a href="#"><i class="fas fa-cogs"></i><span>Validation</span></a>
-				<a href="#"><i class="fas fa-table"></i><span>Location finder</span></a>
+		<div id="mainContent">
+			<div class="mobile_nav">
+				<div class="mobile_nav_items">
+					<a href="dashboard.html"><i class="fas fa-desktop"></i><span>Home</span></a>
+					<a href="./validation.html"
+						><i class="fas fa-cogs"></i><span>Validation</span></a
+					>
+					<a href="./map.html"
+						><i class="fas fa-table"></i><span>Location finder</span></a
+					>
+				</div>
 			</div>
-		</div>
-		<div class="sidebar">
-			<a href="./dashboard.html"
-				><i class="fas fa-desktop"></i><span>Home</span></a
-			>
-			<a href="#"><i class="fas fa-cogs"></i><span>Validation</span></a>
-			<a href="#"><i class="fas fa-table"></i><span>Location finder</span></a>
-		</div>
-		<div class="content">
-			<div class="container">
+			<div class="sidebar">
+				<a href="dashboard.html"><i class="fas fa-desktop"></i><span>Home</span></a>
+				<a href="validation.html"
+					><i class="fas fa-cogs"></i><span>Validation</span></a
+				>
+				<a href="./map.html"
+					><i class="fas fa-table"></i><span>Location finder</span></a
+				>
+			</div>
+
+			<div class="content">
 				<form id="contact" action="" method="post">
-					<h3>Validate your business Idea</h3>
+					<h3 style="text-align: center">Validate your business Idea</h3>
 					<fieldset>
 						<input
 							placeholder="Industry"
@@ -448,18 +420,21 @@
 						></textarea>
 					</fieldset>
 					<fieldset>
-						<button
+						<input
+							type="submit"
 							name="submit"
 							type="submit"
 							id="contact-submit"
 							data-submit="...Sending"
+							value="submit"
 						>
-							Submit
-						</button>
+							
+					</input>
 					</fieldset>
 				</form>
 			</div>
 		</div>
+
 		<div id="myModal" class="modal">
 			<div class="modal-content">
 				<span class="close">&times;</span>
