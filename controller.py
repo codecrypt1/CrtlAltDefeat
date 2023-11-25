@@ -98,7 +98,6 @@ def rank():
 def valid():
     if request.method == 'POST':
         print('validator called')
-
         type_ = request.form.get('industry')
         uid = session.get('uid', 0)
         description = request.form.get('description')
