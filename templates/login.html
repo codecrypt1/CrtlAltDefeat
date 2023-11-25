@@ -225,20 +225,20 @@ input[type="submit"]:active {
      <h2>Sign In</h2> 
 
      <div class="form"> 
-
+	<form method="post">
       <div class="inputBox"> 
 
-       <input type="text" required> <i>Email</i> 
+       <input type="text" name="email"> <i>Email</i> 
 
       </div> 
-
+	  <br>
       <div class="inputBox"> 
 
-       <input type="password" required> <i>Password</i> 
+       <input type="password" name="password" required> <i>Password</i> 
 
       </div> 
-
-      <div class="links"> <a href="#">Forgot Password</a> <a href="./signup.html">Signup</a> 
+	  <br>
+      <div class="links"> <a href="#">Forgot Password</a> <a href="/signup">Signup</a> 
 
       </div> 
 
@@ -247,7 +247,7 @@ input[type="submit"]:active {
        <input type="submit" value="Login"> 
 
       </div> 
-
+	 </form>
      </div> 
 
     </div> 
