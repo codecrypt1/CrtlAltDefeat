@@ -15,7 +15,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Quicksand", sans-serif;
 }
 
 body {
@@ -211,16 +210,17 @@ section .signin .content .form .inputBox {
             <div class="content">
                 <h2>Sign Up</h2>
                 <div class="form">
+                    <form method="POST">
                     <div class="inputBox">
-                        <input id="name" type="text" required>
+                        <input id="name" name="name" type="text" required>
                         <i>Name</i>
                     </div>
                     <div class="inputBox">
-                        <input id="email" type="text" required>
+                        <input id="email" name="email" type="text" required>
                         <i>Email</i>
                     </div>
                     <div class="inputBox">
-                        <input id="password" type="password" required>
+                        <input id="password" name="password" type="password" required>
                         <i>Password</i>
                     </div>
                     <div class="inputBox">
@@ -228,74 +228,18 @@ section .signin .content .form .inputBox {
                         <i>Confirm Password</i>
                     </div>
                     <div class="links">
-                        <a href="./login.html">Login</a>
+                        <a href="/login">Login</a>
                     </div>
                     <div class="inputBox">
-                        <input type="submit" value="Signup" onclick="signupClicked()">
+                        <input type="submit" value="Signup">
                     </div>
+                </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <script>
-        async function signupClicked() {
-            console.log("clicked duyoof");
 
-            // Retrieve form data
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('password2').value;
-
-            // Basic form validation
-            if (!name || !email || !password || !confirmPassword) {
-                alert('All fields are required');
-                return;
-            }
-
-            if (password !== confirmPassword) {
-                alert('Passwords do not match');
-                return;
-            }
-
-            // You can add more specific validation based on your requirements
-
-            // Prepare data for the API
-            const formData = {
-                name: name,
-                email: email,
-                password: password,
-                confirmPassword: confirmPassword
-            };
-
-            // Make API call
-            try {
-                const response = await fetch('/api/user_signup', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(formData)
-                });
-
-                const responseData = await response.json();
-
-                // Check if the response is true
-                if (responseData.success) {
-                    // Redirect to the login page
-                    window.location.href = './login.html';
-                } else {
-                    // Handle error, show a message, etc.
-                    console.error('Signup failed:', responseData.message);
-                    alert('Signup failed: ' + responseData.message);
-                }
-            } catch (error) {
-                console.error('Error during signup:', error.message);
-                alert('Error during signup');
-            }
-        }
-    </script>
 </body>
 
 </html>
